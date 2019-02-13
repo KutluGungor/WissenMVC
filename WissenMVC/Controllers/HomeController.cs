@@ -44,7 +44,7 @@ namespace WissenMVC.Controllers
             body += "Departman: " + department + "<br />";
             body += "Mesaj: " + message + "<br />";
             mailMessage.IsBodyHtml = true;
-            mailMessage.Body = body;
+            mailMessage.Body = body;    
 
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials = new System.Net.NetworkCredential("kutlugungor58@gmail.com", "************");
