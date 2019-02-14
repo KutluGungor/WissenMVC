@@ -52,11 +52,14 @@
 
                 <form method="post" action="@Url.Action("Contact")" id="contactform">
 
-                    @if (ViewBag.Message != null)
+                    <!--onsubmit="return validateForm(this)"-->
+                    <!--JQuery kullanıcaksan yukarıdaki formun içine onsubmit ekle-->
+
+                    @if (ViewBag.Message !=null)
                     {
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="alert alert-success">@ViewBag.Message</div>
+                                <div class="alert @(ViewBag.IsError==null || ViewBag.IsError==false?"alert-success":"alert-danger")">@ViewBag.Message</div>
                             </div>
                         </div>
                     }
@@ -65,20 +68,24 @@
                         <div class="col-md-6">
                             <label>Ad <span class="required">* </span></label>
                             <input type="text" class="form-control ie7-margin" id="name_contact" name="firstName">
+                            <span id="firstNameMessage" class="validationMessage text-danger" style="display:none;"></span>
                         </div>
                         <div class="col-md-6">
                             <label>Soyad <span class="required">* </span></label>
                             <input type="text" class="form-control ie7-margin" id="lastname_contact" name="lastName">
+                            <span id="lastNameMessage" class="validationMessage text-danger" style="display:none;"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label>E-posta <span class="required">* </span></label>
                             <input type="email" id="email_contact" class="form-control ie7-margin" name="email">
+                            <span id="emailMessage" class="validationMessage text-danger" style="display:none;"></span>
                         </div>
                         <div class="col-md-6">
                             <label>Telefon <span class="required">* </span></label>
                             <input type="text" id="phone_contact" class="form-control ie7-margin" name="phone">
+                            <span id="phoneMessage" class="validationMessage text-danger" style="display:none;"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -96,6 +103,7 @@
                         <div class="col-md-12">
                             <label>Mesajınız <span class="required">*</span></label>
                             <textarea rows="5" id="message_contact" class="form-control" name="message"></textarea>
+                            <span id="message" class="validationMessage text-danger" style="display:none;"></span>
                         </div>
                     </div>
                     <div class="row">
@@ -150,3 +158,85 @@
         </section>
     </div><!-- end row-->
 </div><!-- end container-->
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            $("#contactform input, #contactform textarea").keyup(function () {
+                $(this).next(".validationMessage").hide();
+            });
+
+            $("#contactform select ").change(function () {
+                $(this).next(".validationMessage").hide();
+            });
+        });
+
+        function validateForm(elm) {
+
+            var isValid = true;
+            // --------------------------First Name Control------------------------------------- //
+            if ($(elm).find("#name_contact").val() == "") {
+                $("#firstNameMessage").html("Lütfen adınızı giriniz.");
+                $("#firstNameMessage").show();
+                $(elm).find("#name_contact").focus();
+                isValid = false;
+            }
+            if ($(elm).find("#name_contact").val().length > 50) {
+                $("#firstNameMessage").html("Adınız 50 karakterden uzun olamaz.");
+                $("#firstNameMessage").show();
+                $(elm).find("#name_contact").focus();
+                isValid = false;
+            }
+            // ------------------------------Last Name Control-------------------------------------------------//
+            if ($(elm).find("#lastname_contact").val() == "") {
+                $("#lastNameMessage").html("Lütfen soyadınızı giriniz.");
+                $("#lastNameMessage").show();
+                $(elm).find("#lastname_contact").focus();
+                isValid = false;
+
+            }
+            if ($(elm).find("#lastname_contact").val().length > 50) {
+                $("#lastNameMessage").html("Soyadınız 50 karakterden uzun olamaz.");
+                $("#lastNameMessage").show();
+                $(elm).find("#lastname_contact").focus();
+                isValid = false;
+            }
+            // ----------------------------Email Control------------------------------------------------------//
+            if ($(elm).find("#email_contact").val() == "") {
+                $("#emailMessage").html("Email alanı boş geçilemez.");
+                $("#emailMessage").show();
+                $(elm).find("#email_contact").focus();
+                isValid = false;
+            }
+
+            //------------------------------Phone Control----------------------------------------------------//
+            if ($(elm).find("#phone_contact").val() == "") {
+                $("#phoneMessage").html("Telefon alanı boş geçilemez.");
+                $("#phoneMessage").show();
+                $(elm).find("#phone_contact").focus();
+                isValid = false;
+            }
+
+            var pattern = new RegExp(/^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$/g); 
+
+            if (pattern.test($(elm).find("#phone_contact").val()) == false) {
+                $("#phoneMessage").html("Telefon biçimi 5XX XXX XXXX şeklinde olmalıdır.");
+                $("#phoneMessage").show();
+                $(elm).find("#phone_contact").focus();
+                isValid = false;
+            }
+
+            //---------------------------------Mesaj Control------------------------------------------------------//
+            if ($(elm).find("#message_contact").val() == "") {
+                $("#message").html("Mesaj alanı boş geçilemez.");
+                $("#message").show();
+                $(elm).find("#message_contact").focus();
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+}

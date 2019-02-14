@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +11,23 @@ namespace WissenMVC.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult DenemeForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DenemeForm(WissenMVC.Models.DenemeForm model)
+        {
+            if (ModelState.IsValid)
+            {
+                //TODO : Mail Gönder
+                ViewBag.Message = "Mail başarıyla gönderildi.";
+                return View();
+            }
             return View();
         }
 
@@ -30,6 +48,63 @@ namespace WissenMVC.Controllers
         [HttpPost]
         public ActionResult Contact(string firstName, string lastName,string email, string phone, string department,string message)
         {
+            firstName = firstName.Trim();
+            lastName = lastName.Trim();
+            email = email.Trim();
+            phone = phone.Trim();
+            message = message.Trim();
+
+            if (firstName == "")
+            {
+                ViewBag.Message = "Ad alanı boş geçileme.";
+                ViewBag.IsError = true;
+                return View();
+            }
+            if (firstName.Length>50)
+            {
+                ViewBag.Message = "Ad alanı 50 karakterden uzun olamaz.";
+                ViewBag.IsError = true;
+                return View();
+            }
+            if (lastName=="")
+            {
+                ViewBag.Message = "Soyad boş geçilemez.";
+                ViewBag.IsError = true;
+                return View();
+            }
+            if (email=="")
+            {
+                ViewBag.Message = "Email alanı boş geçilemez.";
+                ViewBag.IsError = true;
+                return View();
+            }
+            if (phone=="")
+            {
+                ViewBag.Message = "Telefon alanı boş geçilemez.";
+                ViewBag.IsError = true;
+                return View();
+            }
+
+            Regex regex = new Regex(@"^5(0[5-7]|[3-5]\d) ?\d{3} ?\d{4}$");
+            Match match = regex.Match(phone);
+
+            if (match.Success==false)
+            {
+                ViewBag.Message = "Telefon 5XX XXX XXXX biçiminde olmalıdır.";
+                ViewBag.IsError = true;
+                return View();
+
+            }
+
+
+            if (message=="")
+            {
+                ViewBag.Message = "Mesaj alanı boş geçilemez.";
+                ViewBag.IsError = true;
+                return View();
+
+            }
+            
             //TODO: Mail Gönderme işlemi yapılacak.
 
             System.Net.Mail.MailMessage mailMessage = new System.Net.Mail.MailMessage();

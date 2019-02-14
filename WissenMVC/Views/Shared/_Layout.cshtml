@@ -50,7 +50,7 @@
 <body>
     <!--[if !IE]><!-->
     <script>
-if(/*@@cc_on!@@*/false){document.documentElement.className+=' ie10';}</script><!--<![endif]--> <!-- Border radius fixed IE10-->
+        if (/*@@cc_on!@@*/false) { document.documentElement.className += ' ie10'; }</script><!--<![endif]--> <!-- Border radius fixed IE10-->
 
     <header>
         <div class="container">
@@ -422,13 +422,14 @@ if(/*@@cc_on!@@*/false){document.documentElement.className+=' ie10';}</script><!
         </div>
     </footer><!-- End footer-->
     <div id="toTop">Başa Dön</div>
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     <!-- MEGAMENU -->
     <script src="~/js/jquery.easing.js"></script>
     <script src="~/js/megamenu.js"></script>
 
     <!-- OTHER JS -->
-    <script src="~/js/bootstrap.js"></script>
+    <!--<script src="~/js/bootstrap.js"></script>-->
     <script src="~/js/functions.js"></script>
     <script src="~/assets/validate.js"></script>
 
@@ -441,6 +442,7 @@ if(/*@@cc_on!@@*/false){document.documentElement.className+=' ie10';}</script><!
     <script src="~/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
     <script type="text/javascript" src="~/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script src="~/js/revolutio-slider-func.js"></script>
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>
