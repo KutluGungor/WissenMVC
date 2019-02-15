@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Autofac.Integration.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WissenMVC.Data;
-using WissenMVC.Data.Repositories;
-using WissenMVC.Service;
-using WissenMVC.Service.Services;
+using Autofac.Integration.Mvc;
 
-namespace WissenMVC
+namespace WissenMVC.Admin
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -41,7 +37,6 @@ namespace WissenMVC
 
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
-            
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
