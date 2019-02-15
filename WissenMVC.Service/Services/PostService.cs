@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using WissenMVC.Data;
 using WissenMVC.Model;
 using WissenMVC.Service.Services;
@@ -13,7 +10,7 @@ namespace WissenMVC.Service
     public class PostService:IPostService
     {
         private readonly IRepository<Post> repository;
-        public PostService()
+        public PostService(IRepository<Post> repository)
         {
             this.repository = repository;
         }
