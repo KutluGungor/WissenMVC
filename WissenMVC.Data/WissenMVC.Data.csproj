@@ -56,6 +56,18 @@
     <Compile Include="Migrations\201902150816572_InitialCreate.Designer.cs">
       <DependentUpon>201902150816572_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902180704497_SomeChanges.cs" />
+    <Compile Include="Migrations\201902180704497_SomeChanges.Designer.cs">
+      <DependentUpon>201902180704497_SomeChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902180956502_RequiredToCategoryModel.cs" />
+    <Compile Include="Migrations\201902180956502_RequiredToCategoryModel.Designer.cs">
+      <DependentUpon>201902180956502_RequiredToCategoryModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902181116596_ChangeHasOptional.cs" />
+    <Compile Include="Migrations\201902181116596_ChangeHasOptional.Designer.cs">
+      <DependentUpon>201902181116596_ChangeHasOptional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -73,6 +85,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902150816572_InitialCreate.resx">
       <DependentUpon>201902150816572_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902180704497_SomeChanges.resx">
+      <DependentUpon>201902180704497_SomeChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902180956502_RequiredToCategoryModel.resx">
+      <DependentUpon>201902180956502_RequiredToCategoryModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902181116596_ChangeHasOptional.resx">
+      <DependentUpon>201902181116596_ChangeHasOptional.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

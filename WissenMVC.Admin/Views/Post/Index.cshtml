@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WissenMVC.Model.Post>
+@{
+    ViewBag.Title = "Yazılar";
+}
+<a href="@Url.Action("Create")" class="btn btn-primary">Yeni Kategori</a>
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>Ad</th>
+        <th>Açıklama</th>
+        <th>Kategori</th>
+        <th>Tarih</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><a href="@Url.Action("Edit", new{id=item.Id})">@item.Title</a></td>
+            <td>@item.Description</td>
+            <td>@(item.Category?.Name)</td>
+            <td>@item.CreatedAt.ToString("dd.MM.yyyy")</td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary btn-sm">Düzenle</a>
+                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm">Sil</a>
+            </td>
+        </tr>
+
+    }
+
+
+</table>

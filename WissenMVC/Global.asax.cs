@@ -41,7 +41,17 @@ namespace WissenMVC
 
             // OPTIONAL: Enable property injection into action filters.
             builder.RegisterFilterProvider();
-            
+
+            //DbContext'i mi scoped (yani request bazlı olarak register et.)
+            builder.RegisterType<ApplicationDbContext>().InstancePerDependency();
+
+            //Generic Repository geçici(transient) insantance olarak register et.
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
+
+            //Servisleri Register et
+            builder.RegisterType(typeof(PostService)).As(typeof(IPostService)).InstancePerDependency();
+            builder.RegisterType(typeof(CategoryService)).As(typeof(ICategoryService)).InstancePerDependency();
+
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
