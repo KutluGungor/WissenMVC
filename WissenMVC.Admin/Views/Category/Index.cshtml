@@ -7,7 +7,6 @@
 <table class="table table-hover table-striped">
     <tr>
         <th>Ad</th>
-        <th>Açıklama</th>
         <th>Tarih</th>
         <th></th>
     </tr>
@@ -16,7 +15,6 @@
     {
         <tr>
             <td><a href="@Url.Action("Edit", new{id=item.Id})">@item.Name</a></td>
-            <td>@item.Descripton</td>
             <td>@item.CreatedAt.ToString("dd.MM.yyyy")</td>
             <td>
                 <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary btn-sm">Düzenle</a>

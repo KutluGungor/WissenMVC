@@ -3,6 +3,7 @@
     ViewBag.Title = "Yeni Kategori";
 }
 
+<script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <h2>Yeni Kategori</h2>
 
 <div class="row">
@@ -19,9 +20,10 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.Descripton,"Açıklama :" ,new { @class = "control-label col-md-2" })
+
+                @Html.LabelFor(model => model.Descripton, "Açıklama :", new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Descripton, new { @class = "form-control", placeholder = "Açıklama"})
+                    @Html.TextAreaFor(model => model.Descripton, new { @class = "form-control ckeditor", placeholder = "Açıklama" })
                     @Html.ValidationMessageFor(model => model.Descripton, "", new { @class = "text-danger" })
                 </div>
             </div>

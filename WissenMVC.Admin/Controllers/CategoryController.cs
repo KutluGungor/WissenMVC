@@ -29,6 +29,7 @@ namespace WissenMVC.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(Category category)
         {
             if (ModelState.IsValid)
@@ -51,6 +52,7 @@ namespace WissenMVC.Admin.Controllers
             return View(category);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(Category category)
         {
             if (ModelState.IsValid)

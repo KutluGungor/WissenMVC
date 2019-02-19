@@ -32,6 +32,7 @@ namespace WissenMVC.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(Post post)
         {
             if (ModelState.IsValid)
@@ -58,6 +59,7 @@ namespace WissenMVC.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(Post post)
         {
             if (ModelState.IsValid)
@@ -78,6 +80,18 @@ namespace WissenMVC.Admin.Controllers
         {
             postService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(int id)
+        {
+            var post = postService.Find(id);
+
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            
+            return View(post);
         }
     }
 }

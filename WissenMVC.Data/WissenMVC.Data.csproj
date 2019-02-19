@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201902181116596_ChangeHasOptional.Designer.cs">
       <DependentUpon>201902181116596_ChangeHasOptional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902190745145_AddDataAnnotationToPostModel.cs" />
+    <Compile Include="Migrations\201902190745145_AddDataAnnotationToPostModel.Designer.cs">
+      <DependentUpon>201902190745145_AddDataAnnotationToPostModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902190747402_EditDataAnnotationToPostModel.cs" />
+    <Compile Include="Migrations\201902190747402_EditDataAnnotationToPostModel.Designer.cs">
+      <DependentUpon>201902190747402_EditDataAnnotationToPostModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -94,6 +102,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902181116596_ChangeHasOptional.resx">
       <DependentUpon>201902181116596_ChangeHasOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902190745145_AddDataAnnotationToPostModel.resx">
+      <DependentUpon>201902190745145_AddDataAnnotationToPostModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902190747402_EditDataAnnotationToPostModel.resx">
+      <DependentUpon>201902190747402_EditDataAnnotationToPostModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
